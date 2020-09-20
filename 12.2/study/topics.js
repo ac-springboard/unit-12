@@ -1,6 +1,6 @@
 "use strict";
 
-// 01 - Hangouts
+// 01 - Handout
 
 class Cat {
     constructor( name ){
@@ -16,7 +16,7 @@ console.log( cat.name );
 console.log( cat.dance('samba'));
 
 let dance = cat.dance;
-// dance('mambo'); // It's my time now: WTF???
+// dance('mambo'); // It's my time now: WTF??? OK! (See below)
 //
 console.log( 'dance:', dance );
 
@@ -56,5 +56,7 @@ function applyTax2( taxRate, price, bribePct ){
 const salesWithTax2 = applyTax2.bind( null, 0.5, 10, 0.5 );
 const total2 = salesWithTax2( 0.0725, 50 ); // These two will be discarded (shifted to the right) because the 0.5, 10, 0.5 are prepend to the method signature.
 console.log( "total2", total2 ); // 20
+
+
 
 let stop = true;

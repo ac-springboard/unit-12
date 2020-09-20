@@ -12,7 +12,7 @@ class Vehicle{
         return 'Beep';
     }
     toString(){
-        return `This vehicle is a ${this.make} ${this.model} from ${this.year}`;
+        return `${this.make} ${this.model} - ${this.year}`;
     }
 }
 
@@ -99,20 +99,24 @@ let n = availableSpots.bind( garage );
 let v = getVehicles.bind( garage );
 console.log( '\nWith BIND ==================================================')
 /* Adding vehicles */
-// const  best = new Car( 'The Best', 'The Latest', 3000 );
 console.log( '--------- Available Spots:', n() );
+
 addVehicle(  new Car( 'The Best', 'The Latest', 3000 ) );
-
 console.log( '--------- Available Spots:', n() );
+
 addVehicle( new Car('Hyundai', 'Elantra', 2015 ));
-
 console.log( '--------- Available Spots:', n() );
+
 addVehicle( 'Taco');
+console.log( '--------- Available Spots:', n() );
 
 addVehicle( new Motorcycle('Honda', 'Nighthawk', 2000 ));
 console.log( '--------- Available Spots:', n() );
 
-console.log( 'Parked Vehicles:', v() );
+console.log( 'Parked Vehicles:' );
+v().forEach( (vcl, idx) => {
+    console.log( idx+1 , vcl.toString() );
+});
 
 console.log( '============================================================\n')
 
@@ -128,3 +132,4 @@ garage.add( new Motorcycle('Honda', 'Nighthawk', 2000 ));
 console.log( 'Available Spots:', n() );
 console.log( garage.vehicles);
 garage.add( new Motorcycle('Honda', 'Nighthawk', 2001 ));
+
