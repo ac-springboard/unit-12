@@ -56,7 +56,8 @@ console.log('\n### PART FOUR - GARAGE ###')
 class Garage {
     constructor( numVehicles ){
         this.numVehicles = numVehicles;
-        this.vehicles = new Array( numVehicles );
+        // this.vehicles = new Array( numVehicles ); // Wrong
+        this.vehicles = [];
     }
 
     add ( vehicle ){
@@ -75,14 +76,55 @@ class Garage {
         this.numVehicles--;
         console.log( `Vehicle added: ${vehicle}`);
     }
+
+    availableSpots(){
+        return this.numVehicles;
+    }
+
+    getVehicles(){
+        return this.vehicles;
+    }
 }
 
-// let { vehicles, add } = new Garage( 2 ); // This won't work. Why?
+// let { vehicles, add } = new Garage( 2 ); // This won't work. Why? See below:
+// console.log( vehicles )
+
 const garage = new Garage( 2 );
+
+// -->> Fixes from the knowledge acquired on the sub-unit 12.2
+const { availableSpots, getVehicles, add } = Object.assign( garage );
+/* Bindings */
+const addVehicle = add.bind( garage );
+let n = availableSpots.bind( garage );
+let v = getVehicles.bind( garage );
+console.log( '\nWith BIND ==================================================')
+/* Adding vehicles */
+// const  best = new Car( 'The Best', 'The Latest', 3000 );
+console.log( '--------- Available Spots:', n() );
+addVehicle(  new Car( 'The Best', 'The Latest', 3000 ) );
+
+console.log( '--------- Available Spots:', n() );
+addVehicle( new Car('Hyundai', 'Elantra', 2015 ));
+
+console.log( '--------- Available Spots:', n() );
+addVehicle( 'Taco');
+
+addVehicle( new Motorcycle('Honda', 'Nighthawk', 2000 ));
+console.log( '--------- Available Spots:', n() );
+
+console.log( 'Parked Vehicles:', v() );
+
+console.log( '============================================================\n')
+
+
+// <<--
+
 console.log( garage.vehicles);
 garage.add( new Car('Hyundai', 'Elantra', 2015 ));
+console.log( 'Available Spots:', n() );
 console.log( garage.vehicles);
 garage.add( 'Taco');
 garage.add( new Motorcycle('Honda', 'Nighthawk', 2000 ));
+console.log( 'Available Spots:', n() );
 console.log( garage.vehicles);
 garage.add( new Motorcycle('Honda', 'Nighthawk', 2001 ));
