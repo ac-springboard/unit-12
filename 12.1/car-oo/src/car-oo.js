@@ -133,3 +133,19 @@ console.log( 'Available Spots:', n() );
 console.log( garage.vehicles);
 garage.add( new Motorcycle('Honda', 'Nighthawk', 2001 ));
 
+class Cat {
+    constructor( name ){
+        this.name = name;
+    }
+
+    superGreet(){
+        const _this = this;
+        console.log( `#1 I am ${this.name}`);
+        setTimeout( function () { console.log( `#2 I am ${this.name}`)}, 2000);
+        setTimeout( function () { console.log( `#3 I am ${_this.name}`)}, 4000);
+        setTimeout( () => { console.log( `#4 I am ${this.name}`)}, 6000);
+    }
+}
+
+let cat = new Cat('Meow');
+cat.superGreet();
