@@ -41,11 +41,13 @@ export class HtmlBoard {
     }
   }
 
-  placeInHtmlBoard(player, row, col) {
-    const piece = document.createElement('div');
-    piece.classList.add('piece', 'p' + player);
-    const correctTd = document.getElementById(`${row}-${col}`);
-    correctTd.append(piece);
+  placeInHtmlBoard(row, col, player) {
+    return new Promise( () => {
+      const piece = document.createElement('div');
+      piece.classList.add('piece', 'p' + player);
+      const correctTd = document.getElementById(`${row}-${col}`);
+      correctTd.append(piece);
+    });
   }
 
 

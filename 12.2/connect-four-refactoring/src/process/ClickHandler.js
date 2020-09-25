@@ -1,5 +1,7 @@
 'use strict';
 
+import {StatusManager} from './StatusManager.js';
+
 export class ClickHandler {
 
   // currPlayer = 1;
@@ -20,20 +22,20 @@ export class ClickHandler {
     let status = this.getStatus();
     let player = this.getCurrPlayer();
 
-    if (status && status.current && status.current !== StatusManager.CONTINUE) {
+    if (status && status !== StatusManager.CONTINUE) {
       return;
     }
 
     const col = +evt.target.id;
     let row   = this.findSpotForCol(board, col);
-    if ( !row) {
+    if ( row === null || row === undefined || row < 0 ) {
       return;
     }
 
     this.setLogicalCellValue(row, col, player);
     // this.placeInHtmlBoard(player, row, col);
     const newStatus = this.statusManager.update(player, board);
-    this.processStatus( newStatus );
+    this.processStatus( row, col, newStatus );
   }
 
   findSpotForCol(board, col) {

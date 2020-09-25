@@ -8,7 +8,7 @@ export class LogicalBoard {
     Object.assign(this, {height, width, game});
     // this.placeInHtmlBoard = game.htmlBoardObj.placeInHtmlBoard.bind( game.htmlBoardObj );
     // this.makeLogicalBoard();
-    this.updateHtmlBoard = undefined;
+    // this.updateHtmlBoard = undefined;
   }
 
   // init() {
@@ -28,8 +28,8 @@ export class LogicalBoard {
     return this.logicalBoard;
   }
 
-  setLogicalCellValue( value, rowIdx, colIdx ){
+  setLogicalCellValue( rowIdx, colIdx, value ){
     this.logicalBoard[rowIdx][colIdx] = value;
-    this.updateHtmlBoard( value, rowIdx, colIdx );
+    // this.placeInHtmlBoard( rowIdx, colIdx, value );
   }
 }

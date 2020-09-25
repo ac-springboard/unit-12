@@ -18,7 +18,7 @@ class Game {
       this.statusManagerObj,
       this.logicalBoardObj,
       this);
-    this.htmlBoardObj     = new HtmlBoard(height, width, this );
+    this.htmlBoardObj     = new HtmlBoard(height, width, this);
     this.init();
   }
 
@@ -34,7 +34,8 @@ class Game {
     // this.placeInHtmlBoard = this.htmlBoardObj.placeInHtmlBoard.bind(this.htmlBoardObj);
     // this.htmlBoard = this.htmlBoardObj.getHtmlBoard.bind(this.htmlBoardObj);
 
-    this.logicalBoardObj.updateHtmlBoard = this.htmlBoardObj.placeInHtmlBoard.bind(this.htmlBoardObj);
+    this.updateHtmlBoard = this.htmlBoardObj.placeInHtmlBoard.bind(this.htmlBoardObj);
+    // this.updateHtml                    = this.updateHtmlBoard.bind(this.processStatus);
   }
 
   getCurrPlayer() {
@@ -45,25 +46,41 @@ class Game {
     this.currPlayer = this.currPlayer === 1 ? 2 : 1;
   }
 
-  processStatus(statusCode) {
-    switch (statusCode) {
-      case StatusManager.CONTINUE: {
-        this.setCurrPlayer();
-        break;
+  // updateHtmlBoard( row, col, getCurrentPlayer() {
+  //     _this.htmlBoardObj.placeInHtmlBoard(row, col, _this.getCurrPlayer());
+  //   });
+  // }
+  // updateHtml( updateHtmlBoard, row, col, doStatus ){
+  //   const player = this.getCurrPlayer();
+  //   let resl1 = Promise.resolve( row, col, player);
+  //   resl1.then( updateHtmlBoard( row, col, player ))
+  // }
+
+  processStatus(row, col, statusCode, doStatus ) {
+    const _this = this;
+    this.updateHtmlBoard( row, col, this.getCurrPlayer() );
+    setTimeout( doStatus, 20 );
+    function doStatus () {
+      switch (statusCode) {
+        case StatusManager.CONTINUE: {
+          _this.setCurrPlayer();
+          break;
+        }
+        case StatusManager.TIE: {
+          alert('This is a TIE!');
+          break;
+        }
+        case StatusManager.WINNER: {
+          alert('Player '+_this.getCurrPlayer());
+          break;
+        }
+        default: {
+        }
       }
-      case StatusManager.TIE: {
-        alert('This is a TIE!');
-        break;
-      }
-      case StatusManager.WINNER: {
-        alert('Player ');
-        break;
-      }
-      default: {
-      }
-    }
+    };
   }
 
 }
 
 new Game(6, 7);
+let stop = true;
