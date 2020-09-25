@@ -6,6 +6,8 @@ import {ClickHandler}  from './src/process/ClickHandler.js';
 import {HtmlBoard}     from './src/board/HtmlBoard.js';
 
 // TODO: Use Observer/Observable Pattern
+// NOTE FOR THE REVIEWER: Everything that is asked to do in this part and the further ones
+//                        were already covered by me on the Unit 11 - ConnecThem.
 
 class Game {
 
@@ -23,19 +25,10 @@ class Game {
   }
 
   init() {
-
-    // this.status = this.statusManagerObj.getStatus.bind( this.statusManagerObj );
     this.clickHandler = this.clickHandlerObj.handler.bind(this.clickHandlerObj);
-
     this.logicalBoardObj.makeLogicalBoard();
-    // this.logicalBoard = this.logicalBoardObj.getLogicalBoard.bind(this.logicalBoardObj);
-
     this.htmlBoardObj.makeHtmlBoard(this.clickHandler);
-    // this.placeInHtmlBoard = this.htmlBoardObj.placeInHtmlBoard.bind(this.htmlBoardObj);
-    // this.htmlBoard = this.htmlBoardObj.getHtmlBoard.bind(this.htmlBoardObj);
-
     this.updateHtmlBoard = this.htmlBoardObj.placeInHtmlBoard.bind(this.htmlBoardObj);
-    // this.updateHtml                    = this.updateHtmlBoard.bind(this.processStatus);
   }
 
   getCurrPlayer() {
@@ -45,16 +38,6 @@ class Game {
   setCurrPlayer() {
     this.currPlayer = this.currPlayer === 1 ? 2 : 1;
   }
-
-  // updateHtmlBoard( row, col, getCurrentPlayer() {
-  //     _this.htmlBoardObj.placeInHtmlBoard(row, col, _this.getCurrPlayer());
-  //   });
-  // }
-  // updateHtml( updateHtmlBoard, row, col, doStatus ){
-  //   const player = this.getCurrPlayer();
-  //   let resl1 = Promise.resolve( row, col, player);
-  //   resl1.then( updateHtmlBoard( row, col, player ))
-  // }
 
   processStatus(row, col, statusCode, doStatus ) {
     const _this = this;
